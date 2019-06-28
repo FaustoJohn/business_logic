@@ -7,6 +7,8 @@ defmodule BusinessLogic.MixProject do
       version: "0.1.0",
       elixir: "~> 1.8",
       start_permanent: Mix.env() == :prod,
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [coveralls: :test],
       deps: deps()
     ]
   end
@@ -28,7 +30,8 @@ defmodule BusinessLogic.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:httpoison, "~> 1.4"},
       # {:cors_plug, "~> 2.0"},
-      { :elixir_uuid, "~> 1.2" }
+      { :elixir_uuid, "~> 1.2" },
+      {:excoveralls, "~> 0.10", only: :test}
     ]
   end
 end
