@@ -1,0 +1,16 @@
+apiVersion : apps/v1beta1
+kind: Deployment
+metadata:
+  name: default 
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: default 
+    spec:
+      containers:
+        - name: default 
+          image: faustoarci.azurecr.io/default 
+          ports:
+          - containerPort: default
