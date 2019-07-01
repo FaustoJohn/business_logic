@@ -30,8 +30,8 @@ defmodule BusinessLogic.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:httpoison, "~> 1.4"},
       # {:cors_plug, "~> 2.0"},
-      { :elixir_uuid, "~> 1.2" },
-      {:excoveralls, "~> 0.10", only: :test}
+      {:elixir_uuid, "~> 1.2"},
+      {:excoveralls, "~> 0.10", only: :test, runtime: false}
     ]
   end
 end

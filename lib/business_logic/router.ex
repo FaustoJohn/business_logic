@@ -1,4 +1,5 @@
 defmodule BusinessLogic.Router do
+  alias Plug.Cowboy
   use Plug.Router
   plug :match
   plug :dispatch
@@ -17,7 +18,7 @@ defmodule BusinessLogic.Router do
   end
 
   def start_link(_opts) do
-    Plug.Cowboy.http(__MODULE__, [], [
+    Cowboy.http(__MODULE__, [], [
       port: 6001
     ])
   end

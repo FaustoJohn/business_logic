@@ -1,17 +1,13 @@
 defmodule BusinessLogic.Database.CouchDB do
-  @uri IO.inspect Application.fetch_env!(:business_logic, :couch_db_url)
+  @uri Application.fetch_env!(:business_logic, :couch_db_url)
 
   def insertDocument(tableName, data) when is_map(data) do
     id = UUID.uuid4()
-
-    IO.inspect data
 
     {:ok, response} = HTTPoison.put(@uri <> "/" <> tableName <> "/" <> id, Poison.encode!(data))
 
     if response.status_code == 201 do
       results = Poison.decode!(response.body, as: %{})
-
-      IO.inspect results
 
       if results["ok"] == true do
         {:ok, "document saved"}
@@ -36,8 +32,6 @@ defmodule BusinessLogic.Database.CouchDB do
     if response.status_code == 201 do
       results = Poison.decode!(response.body, as: %{})
 
-      IO.inspect results
-
       if results["ok"] == true do
         {:ok, "document saved"}
       else
@@ -60,8 +54,6 @@ defmodule BusinessLogic.Database.CouchDB do
 
     if response.status_code == 201 do
       results = Poison.decode!(response.body, as: %{})
-
-      IO.inspect results
 
       if results["ok"] == true do
         {:ok, results}
@@ -87,8 +79,6 @@ defmodule BusinessLogic.Database.CouchDB do
 
       if response.status_code == 201 do
         results = Poison.decode!(response.body, as: %{})
-
-        IO.inspect results
 
         if results["ok"] == true do
           {:ok, "created"}
