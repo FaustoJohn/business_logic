@@ -26,8 +26,6 @@ steps:
 
 trigger:
   branches:
-    exclude:
-      - "master"
     include:
       - "*"
 
