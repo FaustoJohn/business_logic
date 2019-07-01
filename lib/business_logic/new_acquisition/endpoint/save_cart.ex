@@ -15,7 +15,7 @@ defmodule BusinessLogic.NewAcquisition.Endpoint.SaveCart do
   match "/", via: :get do
     offer = if Map.has_key?(conn.query_params, "offer"), do: conn.query_params["offer"], else: nil
     case DB.insertDocument("sample_table", %BusinessLogic.Models.Cart{postcode: conn.query_params["postcode"], landline: conn.query_params["landline"], offer: offer}) do
-      {:ok, msg} -> send_resp(conn, 200, Poison.encode!(msg <> " test"))
+      {:ok, msg} -> send_resp(conn, 200, Poison.encode!(msg <> " test2"))
       {:error, msg} -> send_resp(conn, 500, Poison.encode!(msg))
       _ -> send_resp(conn, 500, "An error occurred")
     end
