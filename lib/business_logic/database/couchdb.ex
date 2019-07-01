@@ -1,10 +1,10 @@
 defmodule BusinessLogic.Database.CouchDB do
   @uri Application.fetch_env!(:business_logic, :couch_db_url)
 
-  def insert_document(tableName, data) when is_map(data) do
+  def insert_document(table_name, data) when is_map(data) do
     id = UUID.uuid4()
 
-    {:ok, response} = HTTPoison.put(@uri <> "/" <> tableName <> "/" <> id, Poison.encode!(data))
+    {:ok, response} = HTTPoison.put(@uri <> "/" <> table_name <> "/" <> id, Poison.encode!(data))
 
     if response.status_code == 201 do
       results = Poison.decode!(response.body, as: %{})
@@ -26,8 +26,8 @@ defmodule BusinessLogic.Database.CouchDB do
   @doc """
   Updates the selected document with the provided data within the chosen database
   """
-  def update_document(dbName, documentID, data) do
-    {:ok, response} = HTTPoison.post(@uri <> "/" <> dbName <> "/" <> documentID, Poison.encode!(data))
+  def update_document(db_name, document_id, data) do
+    {:ok, response} = HTTPoison.post(@uri <> "/" <> db_name <> "/" <> document_id, Poison.encode!(data))
 
     if response.status_code == 201 do
       results = Poison.decode!(response.body, as: %{})
@@ -43,14 +43,14 @@ defmodule BusinessLogic.Database.CouchDB do
       {:error, "An error occurred while trying to add a new document"}
     end
 
-    {:ok, documentID}
+    {:ok, document_id}
   end
 
   @doc """
   Retrieves the information about the selected document
   """
-  def get_document_by_id(dbName, documentID) do
-    {:ok, response} = HTTPoison.get(@uri <> "/" <> dbName <> "/" <> documentID)
+  def get_document_by_id(db_name, document_id) do
+    {:ok, response} = HTTPoison.get(@uri <> "/" <> db_name <> "/" <> document_id)
 
     if response.status_code == 201 do
       results = Poison.decode!(response.body, as: %{})
@@ -70,12 +70,12 @@ defmodule BusinessLogic.Database.CouchDB do
   @doc """
   Creates a database into CouchDB instance
   """
-  def create_database(dbName) do
-    if dbName == nil || dbName == "" do
+  def create_database(db_name) do
+    if db_name == nil || db_name == "" do
       {:error, "Please provide a table name to be created"}
     else
-      # Here we have the main body of the function after we have performed our validation on the 'dbName' parameter
-      {:ok, response} = HTTPoison.put @uri <> "/" <> dbName
+      # Here we have the main body of the function after we have performed our validation on the 'db_name' parameter
+      {:ok, response} = HTTPoison.put @uri <> "/" <> db_name
 
       if response.status_code == 201 do
         results = Poison.decode!(response.body, as: %{})
@@ -88,7 +88,7 @@ defmodule BusinessLogic.Database.CouchDB do
         end
       else
         # Return an error
-        {:error, "An error occurred while trying to create the table: " <> dbName}
+        {:error, "An error occurred while trying to create the table: " <> db_name}
       end
     end
   end
