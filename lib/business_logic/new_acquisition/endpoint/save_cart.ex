@@ -14,7 +14,7 @@ defmodule BusinessLogic.NewAcquisition.Endpoint.SaveCart do
 
   match "/", via: :get do
     offer = if Map.has_key?(conn.query_params, "offer"), do: conn.query_params["offer"], else: nil
-    case DB.insertDocument(
+    case DB.insert_document(
       "sample_table",
       %BusinessLogic.Models.Cart{
         postcode: conn.query_params["postcode"],

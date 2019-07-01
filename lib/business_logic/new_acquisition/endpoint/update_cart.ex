@@ -13,7 +13,7 @@ defmodule BusinessLogic.NewAcquisition.Endpoint.UpdateCart do
   plug(:dispatch)
 
   match "/", via: :get do
-    case DB.createDatabase("sample_table") do
+    case DB.create_database("sample_table") do
       {:ok, msg} -> send_resp(conn, 200, Poison.encode!(msg))
       {:error, msg} -> send_resp(conn, 500, Poison.encode!(msg))
       _ -> send_resp(conn, 500, "An error occurred")

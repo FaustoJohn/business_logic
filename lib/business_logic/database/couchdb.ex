@@ -1,7 +1,7 @@
 defmodule BusinessLogic.Database.CouchDB do
   @uri Application.fetch_env!(:business_logic, :couch_db_url)
 
-  def insertDocument(tableName, data) when is_map(data) do
+  def insert_document(tableName, data) when is_map(data) do
     id = UUID.uuid4()
 
     {:ok, response} = HTTPoison.put(@uri <> "/" <> tableName <> "/" <> id, Poison.encode!(data))
@@ -26,7 +26,7 @@ defmodule BusinessLogic.Database.CouchDB do
   @doc """
   Updates the selected document with the provided data within the chosen database
   """
-  def updateDocument(dbName, documentID, data) do
+  def update_document(dbName, documentID, data) do
     {:ok, response} = HTTPoison.post(@uri <> "/" <> dbName <> "/" <> documentID, Poison.encode!(data))
 
     if response.status_code == 201 do
@@ -49,7 +49,7 @@ defmodule BusinessLogic.Database.CouchDB do
   @doc """
   Retrieves the information about the selected document
   """
-  def getDocumentByID(dbName, documentID) do
+  def get_document_by_id(dbName, documentID) do
     {:ok, response} = HTTPoison.get(@uri <> "/" <> dbName <> "/" <> documentID)
 
     if response.status_code == 201 do
@@ -70,7 +70,7 @@ defmodule BusinessLogic.Database.CouchDB do
   @doc """
   Creates a database into CouchDB instance
   """
-  def createDatabase(dbName) do
+  def create_database(dbName) do
     if dbName == nil || dbName == "" do
       {:error, "Please provide a table name to be created"}
     else
