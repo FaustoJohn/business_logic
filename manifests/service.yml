@@ -5,6 +5,6 @@ metadata:
 spec:
     type: LoadBalancer
     ports:
-    - port: default 
+    - port: 6001 
     selector:
         app: default

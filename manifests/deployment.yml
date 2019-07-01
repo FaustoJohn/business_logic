@@ -13,4 +13,4 @@ spec:
         - name: default 
           image: faustoarci.azurecr.io/default 
           ports:
-          - containerPort: default
+          - containerPort: 6001
