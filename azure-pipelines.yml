@@ -1,0 +1,36 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+name: business_logic_microservice-Docker_container-CI_new
+
+steps:
+- task: Docker@0
+  displayName: Build Image
+  inputs:
+    containerregistrytype: Container Registry
+    dockerRegistryConnection: DockerHub
+    dockerFile: 'business_logic.dockerfile'
+    imageName: 'faustoarcidiacono/tt_micro_bl:$(Build.SourceBranchName)-$(Build.BuildId)'
+    qualifyImageName: false
+- task: Docker@0
+  displayName: Push an image
+  inputs:
+    containerregistrytype: Container Registry
+    dockerRegistryConnection: DockerHub
+    action: Push an image
+    imageName: 'faustoarcidiacono/tt_micro_bl:$(Build.SourceBranchName)-$(Build.BuildId)'
+    qualifyImageName: false
+
+
+trigger:
+  branches:
+    exclude:
+      - "master"
+    include:
+      - "*"
+
+
+pool:
+  vmImage: 'ubuntu-latest'
