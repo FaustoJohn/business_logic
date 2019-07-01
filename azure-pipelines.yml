@@ -11,7 +11,7 @@ steps:
   inputs:
     containerregistrytype: Container Registry
     dockerRegistryConnection: DockerHub
-    dockerFile: 'business_logic.dockerfile'
+    dockerFile: '.dockerfile'
     imageName: 'faustoarcidiacono/tt_micro_bl:$(Build.SourceBranchName)-$(Build.BuildId)'
     qualifyImageName: false
 - task: Docker@0
