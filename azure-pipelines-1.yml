@@ -12,7 +12,7 @@ variables:
 
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: 'a6716de4-1106-4d62-8993-42dacaab275f'
-  imageRepository: 'default'
+  imageRepository: 'tt-micro-bl'
   containerRegistry: 'faustoarci.azurecr.io'
   dockerfilePath: '.dockerfile'
   tag: 'latest'
