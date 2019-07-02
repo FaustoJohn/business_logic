@@ -3,7 +3,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
 trigger:
-- refs/tags/latest
+- refs/tags/build-*
 
 resources:
 - repo: self
