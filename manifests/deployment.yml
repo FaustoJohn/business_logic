@@ -10,7 +10,7 @@ spec:
         app: default 
     spec:
       containers:
-        - name: tt_micro_bl 
+        - name: tt-micro-bl 
           image: faustoarci.azurecr.io/tt-micro-bl
           ports:
           - containerPort: 6001
